@@ -1,0 +1,34 @@
+version: '3'
+services:
+  backend:
+    build: ./BACKEND
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./BACKEND/.env
+    volumes:
+      - ./BACKEND:/app
+    networks:
+      - cinemanager-network
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./FRONTEND
+    ports:
+      - "3000:3000"
+    networks:
+      - cinemanager-network
+
+  mongodb:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - cinemanager-network
+
+networks:
+  cinemanager-network:
+    driver: bridge
