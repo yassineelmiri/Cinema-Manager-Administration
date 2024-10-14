@@ -5,7 +5,11 @@ const {
   validateRegiterUser,
   validateLoginUser,
 } = require("../models/User");
-
+const VerificationToken = require("../models/VerificationToken");
+const { required } = require("joi");
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
+const { verifyTokenAndAdmin } = require("../middlewares/verifyToken");
 /**-----------------------------------------------
  * @desc Register New User 
  * @router /api/auth/register
@@ -39,10 +43,55 @@ module.exports.registerUserCtrl = asyncHandler(async (req, res) => {
   });
 
   await user.save();
+  //creation new verification & save it toDB
+  const verificationToken = new VerificationToken({
+    userId: user._id,
+    token: crypto.randomBytes(32).toString("hex"),
+  });
+  await verificationToken.save();
+  //link
+  const link = `http://localhost:3000/user/${user._id}/verify/${verificationToken.token}`;
+  //into an html templet
+  const htmlTemplate = `
+  <div>
+  <p>Click on the link below to verify your email</p>
+  <a href="${link}">Verify</a>
+  </div>
+  `;
+  //send email to the user
+  await sendEmail(user.email, "Verify your Email", htmlTemplate);
+  res.status(201).json({
+    message: "We sent to you an email, please verify your email address",
+  });
+});
 
-  res
-    .status(201)
-    .json({ message: "You registered successfully, please log in" });
+/**-----------------------------------------------
+ * @desc Verify User Account 
+ * @router /api/auth/:userId/verify/:token
+ * @method GET
+ * @access public
+-------------------------------------------------*/
+
+module.exports.verifyUserAccountCtrl = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.userId);
+  if (!user) {
+    return res.status(400).json({ message: "Invalid link" });
+  }
+
+  const verificationToken = await VerificationToken.findOne({
+    userId: user._id,
+    token: req.params.token,
+  });
+
+  if (!verificationToken) {
+    return res.status(400).json({ message: "Invalid link" });
+  }
+
+  user.isAccountVerified = true;
+  await user.save();
+  await verificationToken.remove();
+  
+  res.status(200).json({ message: "Your account has been verified" });
 });
 
 /**-----------------------------------------------
@@ -66,6 +115,12 @@ module.exports.LoginUserCtrl = asyncHandler(async (req, res) => {
   );
   if (!isPasswordMatch) {
     return res.status(400).json({ message: "invalid password" });
+  }
+
+  if (!user.isAccountVerified) {
+    return res.status(400).json({
+      message: "We sent to you an email, please verify your email address",
+    });
   }
 
   const token = user.generateAuthToken();
