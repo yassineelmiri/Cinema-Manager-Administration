@@ -13,8 +13,11 @@ const PostsList = () => {
   }, [dispatch]);
 
 
-  const filteredPosts = posts.filter(post => 
-    post.title && post.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPosts = posts.filter(
+    post => post.title && post.title
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase()
+  )
   );
 
   return (

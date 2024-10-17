@@ -11,7 +11,6 @@ const PostsPage = () => {
   };
   console.log(handleSearch);
   
-
   return (
     <>
       <Header />

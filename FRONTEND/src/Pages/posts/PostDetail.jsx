@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPostById } from "../../redux/apiCalls/postApiCall";
 import { fetchSeancesByFilmId } from "../../redux/apiCalls/seanceApiCall";
 import { makeReservation } from "../../redux/apiCalls/reservationApiCall";
+import AddComment from "../comments/Addcomment";
+import CommentList from "../comments/comment-list";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -29,7 +31,6 @@ const PostDetail = () => {
     };
     dispatch(makeReservation(reservationData));
   };
-  
 
   if (!post) {
     return <p>No post found</p>;
@@ -133,6 +134,10 @@ const PostDetail = () => {
                     )}
                   </div>
                 </div>
+                <hr />
+                <AddComment postId={id} />
+                <CommentList postId={id} />
+                <hr />
               </div>
             </div>
           </div>
