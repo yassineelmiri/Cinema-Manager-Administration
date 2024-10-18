@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+
 const PostItem = ({ imgSrc, rating, title, list, id }) => {
   return (
     <div className="card">
