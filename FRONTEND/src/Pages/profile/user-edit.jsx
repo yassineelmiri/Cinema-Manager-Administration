@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import Header from "../../home/header";
 import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
@@ -10,12 +11,10 @@ const UserEdit = () => {
   const dispatch = useDispatch();
   const { reservations } = useSelector((state) => state.reservation);
   const { user } = useSelector((state) => state.auth);
-  
-  // État pour les réservations de l'utilisateur actuel
+
   const [userReservations, setUserReservations] = useState([]);
 
   useEffect(() => {
-    // Récupérer les réservations
     dispatch(fetchReservations());
   }, [dispatch]);
 
@@ -307,7 +306,7 @@ const UserEdit = () => {
                             </div>
                           </td>
                           <td>
-                          <div className="main__table-btns">
+                            <div className="main__table-btns">
                               <Link
                                 to="#modal-view"
                                 class="main__table-btn main__table-btn--view open-modal"
