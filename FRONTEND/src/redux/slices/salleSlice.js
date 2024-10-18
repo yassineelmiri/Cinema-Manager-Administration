@@ -14,7 +14,7 @@ const salleSlice = createSlice({
       state.loading = false;
     },
     addSalle: (state, action) => {
-      state.salles.push(action.payload); // Ajouter la nouvelle salle directement
+      state.salles.push(action.payload);
     },
     setLoading: (state) => {
       state.loading = true;
