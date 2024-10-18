@@ -6,15 +6,15 @@ import { setLoading } from "../slices/postSlice";
 // Créer un commentaire
 export function createComment(newComment) {
   return async (dispatch, getState) => {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (!userInfo || !userInfo.token) {
-        toast.error("User is not authenticated");
-        return;
-      }
+      toast.error("User is not authenticated");
+      return;
+    }
     try {
       const { data } = await request.post("/api/comments", newComment, {
         headers: {
-            'Authorization': `Bearer ${userInfo.token}` 
+          Authorization: `Bearer ${userInfo.token}`,
         },
       });
       dispatch(commentActions.addComment(data));
@@ -27,12 +27,12 @@ export function createComment(newComment) {
 
 // Récupérer les commentaires
 export function fetchComments() {
-    return async (dispatch) => {
-      try {
-        const { data } = await request.get("/api/comments");
-        dispatch(commentActions.setComments(data));
-      } catch (error) {
-        toast.error("Erreur lors de la récupération des commentaires");
-      }
-    };
-  }
+  return async (dispatch) => {
+    try {
+      const { data } = await request.get("/api/comments");
+      dispatch(commentActions.setComments(data));
+    } catch (error) {
+      toast.error("Erreur lors de la récupération des commentaires");
+    }
+  };
+}
