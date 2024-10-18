@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const ListFilm = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
- 
-  
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
@@ -29,7 +27,7 @@ const ListFilm = () => {
   };
 
   const closeModal = () => {
-    setShowUpdateModal(false); 
+    setShowUpdateModal(false);
   };
 
   const handleUpdate = (event) => {
