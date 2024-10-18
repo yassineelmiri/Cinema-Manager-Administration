@@ -7,11 +7,10 @@ import { toast } from "react-toastify";
 import request from "../../utils/request";
 
 // Update User Profile
-export function updateUserProfile(userId, updatedData ) {
-    console.log();
+export function updateUserProfile(userId, updatedData) {
+  console.log();
 
-    return async (dispatch) => {
-
+  return async (dispatch) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (!userInfo || !userInfo.token) {
       toast.error("User is not authenticated");
@@ -24,11 +23,11 @@ export function updateUserProfile(userId, updatedData ) {
         updatedData,
         {
           headers: {
-            'Authorization': `Bearer ${userInfo.token}` 
+            Authorization: `Bearer ${userInfo.token}`,
           },
         }
-      );   
-         
+      );
+
       dispatch(updateUserSuccess(data));
       toast.success("Profile updated successfully!");
     } catch (error) {
