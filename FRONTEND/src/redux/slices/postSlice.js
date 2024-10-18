@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import AddComment from "../../Pages/comments/Addcomment";
-
 const postSlice = createSlice({
   name: "post",
   initialState: {
