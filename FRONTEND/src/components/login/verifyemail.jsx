@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { verifyEmail } from "../../redux/apiCalls/authApiCall";
 
+
 const VerifyEmail = () => {
   const dispatch = useDispatch();
   const { isEmailVerified } = useSelector((state) => state.auth);

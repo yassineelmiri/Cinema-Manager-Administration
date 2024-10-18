@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../../assets/css/main.css';
-import { toast } from "react-toastify"; // Pour les notifications
+import "../../assets/css/main.css";
+import { toast } from "react-toastify";
 
-import logo from '../../assets/img/series/logo.png'; // Assurez-vous que le chemin est correct
-import bgImage from '../../assets/img/bg.jpg'; // Assurez-vous que le chemin est correct
+import logo from "../../assets/img/series/logo.png";
+import bgImage from "../../assets/img/bg.jpg";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -26,11 +26,13 @@ const ResetPassword = () => {
     }
 
     console.log({ newPassword, confirmPassword });
-    // Vous pouvez ici envoyer la requête pour définir le nouveau mot de passe
   };
 
   return (
-    <div className="sign section--full-bg" style={{ backgroundImage: `url(${bgImage})` }}>
+    <div
+      className="sign section--full-bg"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -55,14 +57,16 @@ const ResetPassword = () => {
                     className="sign__input"
                     placeholder="Confirm new password"
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)} // Mise à jour de la confirmation du mot de passe
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
 
-                <button className="sign__btn" type="submit">Reset Password</button> {/* Bouton de soumission */}
+                <button className="sign__btn" type="submit">
+                  Reset Password
+                </button>
 
                 <span className="sign__text">
-                  Remembered your password? <Link to="/signin">Sign in!</Link> {/* Lien vers la connexion */}
+                  Remembered your password? <Link to="/signin">Sign in!</Link>
                 </span>
               </form>
             </div>

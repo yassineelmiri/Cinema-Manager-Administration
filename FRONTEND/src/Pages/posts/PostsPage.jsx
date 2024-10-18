@@ -10,7 +10,6 @@ const PostsPage = () => {
     setSearchTerm(event.target.value);
   };
   console.log(handleSearch);
-  
 
   return (
     <>
@@ -19,7 +18,6 @@ const PostsPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-
               <div className="row row--grid">
                 <PostsList searchTerm={searchTerm} />
               </div>

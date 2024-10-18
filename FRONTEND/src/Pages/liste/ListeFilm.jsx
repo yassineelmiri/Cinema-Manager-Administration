@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const ListFilm = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
- 
-  
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
@@ -25,17 +23,16 @@ const ListFilm = () => {
 
   const handleUpdateClick = (post) => {
     setCurrentPost(post);
-    setShowUpdateModal(true); // Ouvre la pop-up
+    setShowUpdateModal(true);
   };
 
   const closeModal = () => {
-    setShowUpdateModal(false); // Ferme la pop-up
+    setShowUpdateModal(false);
   };
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    // Logique pour mettre à jour le post avec les informations modifiées
-    // Exécuter la fonction dispatch pour mettre à jour
+
     closeModal();
   };
 

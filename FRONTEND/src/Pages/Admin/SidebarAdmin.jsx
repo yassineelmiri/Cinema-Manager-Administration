@@ -3,7 +3,6 @@ import logo from "../../assets/img/series/logo.png";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-
 const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
 
@@ -29,7 +28,7 @@ const Sidebar = () => {
 
         <div className="sidebar__user">
           <div className="sidebar__user-img">
-            <img src={user?.profilePhoto.url } alt="photo_profil" />
+            <img src={user?.profilePhoto.url} alt="photo_profil" />
           </div>
           <div className="sidebar__user-title">
             <span>{user?.isAdmin ? "Admin" : "User"}</span>
@@ -76,7 +75,6 @@ const Sidebar = () => {
               Liste Seance
             </Link>
           </li>
-
         </ul>
       </div>
     </>

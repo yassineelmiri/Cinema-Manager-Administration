@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSeancesByFilmId,
   deleteSeance,
-} from "../../redux/apiCalls/seanceApiCall"; // Assurez-vous d'avoir la fonction deleteSeance
+} from "../../redux/apiCalls/seanceApiCall";
 import { Link } from "react-router-dom";
 
 const ListeSeance = () => {

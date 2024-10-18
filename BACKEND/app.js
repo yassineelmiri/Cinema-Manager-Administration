@@ -6,10 +6,12 @@ const ConnectToDb = require("./config/connectToDb");
 
 // Importation des routes
 const salleRoutes = require("./routes/salle");
+const usersRoute = require("./routes/usersRoute");
 const seanceRoutes = require("./routes/seance");
 const reservationRoutes = require("./routes/reservation");
 const authRoute = require("./routes/authRoute");
 const postsRoutes = require("./routes/postsRoute");
+const commentsRoute = require("./routes/commentsRoute");
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -32,8 +34,10 @@ app.use(cors({
 
 // Routes
 app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoutes);
 app.use("/api/salles", salleRoutes);
+app.use("/api/comments", commentsRoute);
 app.use("/api/seances", seanceRoutes);
 app.use("/api/reservations", reservationRoutes);
 

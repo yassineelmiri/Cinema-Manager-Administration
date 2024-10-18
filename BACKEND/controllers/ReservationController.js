@@ -2,15 +2,16 @@ const nodemailer = require("nodemailer");
 const Reservation = require("../models/Reservation");
 
 exports.makeReservation = async (req, res) => {
-  const { seance, places } = req.body;
-
-  if (!req.user || !req.user._id) {
-    return res.status(401).json({ message: "Utilisateur non authentifié" });
-  }
+  const { seance, places,client } = req.body;
+  console.log(req.body);
+  
+  // if (!req.user || !req.user._id) {
+  //   return res.status(401).json({ message: "Utilisateur non authentifié" });
+  // }
 
   try {
     const reservation = new Reservation({
-      client: req.user._id,
+      client,
       seance,
       places,
     });
@@ -26,7 +27,7 @@ exports.makeReservation = async (req, res) => {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: req.user.email,
+      to: "miriyassine123@gmail.com",
       subject: "Confirmation de votre réservation",
       html: `<p>Votre réservation a été confirmée !</p>
                    <p>Détails de la réservation :</p>
@@ -61,15 +62,16 @@ exports.cancelReservation = async (req, res) => {
   }
 };
 
-exports.getReservations = async (req, res) => {
-  if (!req.user || !req.user._id) {
-    return res.status(401).json({ message: "Utilisateur non authentifié" });
-  }
-
+exports.getReservations = async (req, res) => {  
   try {
-    const reservations = await Reservation.find({
-      client: req.user._id,
-    }).populate("seance");
+    const reservations = await Reservation.find()
+      .populate({
+        path: "seance", 
+        populate: [
+          { path: "film", model: "Post" },
+          { path: "salle", model: "Salle" } 
+        ]
+      });
     res.json(reservations);
   } catch (error) {
     res

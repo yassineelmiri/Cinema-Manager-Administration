@@ -90,7 +90,7 @@ module.exports.verifyUserAccountCtrl = asyncHandler(async (req, res) => {
   user.isAccountVerified = true;
   await user.save();
   await verificationToken.remove();
-  
+
   res.status(200).json({ message: "Your account has been verified" });
 });
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Admin/SidebarAdmin";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSalles, deleteSalle } from "../../redux/apiCalls/salleApiCall"; 
+import { fetchSalles, deleteSalle } from "../../redux/apiCalls/salleApiCall";
 import { Link } from "react-router-dom";
 
 const ListSalle = () => {
   const dispatch = useDispatch();
-  const salles = useSelector((state) => state.salle.salles); 
+  const salles = useSelector((state) => state.salle.salles);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [currentSalle, setCurrentSalle] = useState(null); 
+  const [currentSalle, setCurrentSalle] = useState(null);
   useEffect(() => {
     dispatch(fetchSalles());
   }, [dispatch]);
@@ -21,17 +21,15 @@ const ListSalle = () => {
 
   const handleUpdateClick = (salle) => {
     setCurrentSalle(salle);
-    setShowUpdateModal(true); 
+    setShowUpdateModal(true);
   };
 
   const closeModal = () => {
-    setShowUpdateModal(false); 
+    setShowUpdateModal(false);
   };
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    // Logique pour mettre à jour la salle avec les informations modifiées
-    // Vous devrez créer une action pour mettre à jour une salle
     closeModal();
   };
 
@@ -72,10 +70,14 @@ const ListSalle = () => {
                           <div className="main__table-text">{salle.nom}</div>
                         </td>
                         <td>
-                          <div className="main__table-text">{salle.capacite}</div>
+                          <div className="main__table-text">
+                            {salle.capacite}
+                          </div>
                         </td>
                         <td>
-                          <div className="main__table-text">{salle.typeSalle}</div>
+                          <div className="main__table-text">
+                            {salle.typeSalle}
+                          </div>
                         </td>
                         <td>
                           <div className="main__table-btns">
@@ -142,7 +144,10 @@ const ListSalle = () => {
                 className="form__input"
                 value={currentSalle?.typeSalle || ""}
                 onChange={(e) =>
-                  setCurrentSalle({ ...currentSalle, typeSalle: e.target.value })
+                  setCurrentSalle({
+                    ...currentSalle,
+                    typeSalle: e.target.value,
+                  })
                 }
               >
                 <option value="Standard">Standard</option>
@@ -151,13 +156,13 @@ const ListSalle = () => {
               </select>
               <div className="modal__btns">
                 <button className="modal__btn modal__btn--apply" type="submit">
-                Update
+                  Update
                 </button>
                 <button
                   className="modal__btn modal__btn--dismiss"
                   onClick={closeModal}
                 >
-                    Cancel
+                  Cancel
                 </button>
               </div>
             </form>

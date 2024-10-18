@@ -12,7 +12,7 @@ import "../../assets/css/owl.carousel.min.css";
 import PostsList from "../posts/PostsList";
 import promoVideo from "../../assets/vedio/Black and Blue Neon Technology Video.mp4";
 
-//fetch
+//  fetch
 import { useDispatch } from "react-redux";
 import { fetchPost } from "../../redux/apiCalls/postApiCall";
 import Contact from "./contact";
