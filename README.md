@@ -1,5 +1,7 @@
 # CinéManager - Frontend
 
+
+
 ## Figma 
 - **Lien** : https://www.figma.com/design/gEES0qakbAB2CK2GGy5UHB/Untitled?node-id=0-1&t=uETqtg9sikmWvEtq-1 
 
