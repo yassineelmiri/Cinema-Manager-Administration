@@ -4,7 +4,7 @@ import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const User = () => {
-    const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -89,8 +89,6 @@ const User = () => {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
       <Footer />
