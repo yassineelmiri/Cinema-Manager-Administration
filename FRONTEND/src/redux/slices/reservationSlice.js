@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const reservationSlice = createSlice({
   name: "reservation",
   initialState: {
@@ -23,10 +22,7 @@ const reservationSlice = createSlice({
   },
 });
 
-export const {
-  startReservation,
-  reservationSuccess,
-  reservationError,
-} = reservationSlice.actions;
+export const { startReservation, reservationSuccess, reservationError } =
+  reservationSlice.actions;
 
 export default reservationSlice.reducer;
