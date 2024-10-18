@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Admin/SidebarAdmin";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { createSalle } from "../../redux/apiCalls/salleApiCall"; // Assurez-vous d'avoir cette fonction
+import { createSalle } from "../../redux/apiCalls/salleApiCall";
 
 const CreateSalle = () => {
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ const CreateSalle = () => {
 
     const salleData = {
       nom,
-      capacite: Number(capacite), // Convertir la capacité en nombre
+      capacite: Number(capacite), 
       typeSalle,
     };
 
     try {
-      await dispatch(createSalle(salleData)); // Pas besoin d'attendre la structure de la réponse
+      await dispatch(createSalle(salleData));
       toast.success("Salle créée avec succès !");
       setNom("");
       setCapacite("");
