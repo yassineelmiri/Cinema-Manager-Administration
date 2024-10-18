@@ -52,7 +52,6 @@ const CreatePost = () => {
         setImagePreview(null);
       }
     } catch (error) {
-     
       console.error("Erreur:", error);
     }
   };
