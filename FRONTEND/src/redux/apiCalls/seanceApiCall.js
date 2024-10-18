@@ -17,7 +17,12 @@ export const createSeance = (seanceData) => async (dispatch) => {
     const { data } = await request.post("/api/seances", seanceData);
     dispatch(setSeances(data));
   } catch (error) {
-    dispatch(setError(error.response?.data?.message || "Erreur lors de la création de la séance"));
+    dispatch(
+      setError(
+        error.response?.data?.message ||
+          "Erreur lors de la création de la séance"
+      )
+    );
     throw error;
   }
 };
@@ -28,7 +33,12 @@ export const deleteSeance = (seanceId) => async (dispatch) => {
     await request.delete(`/api/seances/${seanceId}`);
     dispatch(fetchSeancesByFilmId());
   } catch (error) {
-    dispatch(setError(error.response?.data?.message || "Erreur lors de la suppression de la séance"));
+    dispatch(
+      setError(
+        error.response?.data?.message ||
+          "Erreur lors de la suppression de la séance"
+      )
+    );
     throw error;
   }
 };
