@@ -16,13 +16,13 @@ const CreateSeance = () => {
   const [tarif, setTarif] = useState("");
 
   // Fetching available films and salles from Redux store
-  const films = useSelector((state) => state.post.posts); // Adjust according to your slice
+  const films = useSelector((state) => state.post.posts);
   const salles = useSelector((state) => state.salle.salles);
 
   // Load salles and films when component mounts
   React.useEffect(() => {
     dispatch(fetchSalles());
-    dispatch(fetchPost(1)); // Load the first page of films
+    dispatch(fetchPost(1));
   }, [dispatch]);
 
   const formSubmitHandler = async (e) => {
