@@ -1,39 +1,38 @@
-# CinéManager - Frontend
+# CinéManager - Manager Administration
 
+![CinéManager Image](https://github.com/user-attachments/assets/a540df9a-952a-4329-8f41-57eb6084cfc9)
 
+## Aperçu du projet
 
-## Figma 
-- **Lien** : https://www.figma.com/design/gEES0qakbAB2CK2GGy5UHB/Untitled?node-id=0-1&t=uETqtg9sikmWvEtq-1 
+**CinéManager** est une application complète pour la gestion de cinéma. Elle permet aux utilisateurs de s'inscrire, de réserver des séances de cinéma, et de consulter les films disponibles. L'interface d'administration permet de gérer les films, les utilisateurs et les réservations, facilitant ainsi le travail des gestionnaires de cinéma.
 
-![image](https://github.com/user-attachments/assets/e803ec04-3fe8-4c01-b600-0c8c2a160377)
+### Démo du design sur Figma
+- [Figma Design](https://www.figma.com/design/gEES0qakbAB2CK2GGy5UHB/Untitled?node-id=0-1&t=uETqtg9sikmWvEtq-1)
 
-## JIRA
-- **Lien** : https://yassine019.atlassian.net/jira/core/projects/POR/list
+![Figma Image](https://github.com/user-attachments/assets/e803ec04-3fe8-4c01-b600-0c8c2a160377)
 
-![image](https://github.com/user-attachments/assets/778bffbd-0a7a-4fda-bb70-44fd1ca5d41e)
+### Gestion de projet avec JIRA
+- [JIRA Board](https://yassine019.atlassian.net/jira/core/projects/POR/list)
 
+![JIRA Image](https://github.com/user-attachments/assets/778bffbd-0a7a-4fda-bb70-44fd1ca5d41e)
 
-## Description du projet
+## Fonctionnalités principales
 
-CinéManager est une application de gestion de cinéma permettant aux utilisateurs de s'inscrire, se connecter, réserver des séances, et consulter les films disponibles. Ce projet utilise **React** pour le frontend et est dockerisé pour une facilité de déploiement.
+- **Authentification sécurisée** : inscription, connexion avec gestion des tokens JWT.
+- **Réinitialisation de mot de passe** : via un lien sécurisé par email.
+- **Gestion des réservations** : sélection et réservation de séances de cinéma.
+- **Catalogue des films** : visualisation et filtrage des films par genre ou date.
+- **Tableau de bord administrateur** : gestion des utilisateurs, films et réservations.
 
-### Fonctionnalités principales :
-- **Inscription et connexion** avec gestion des tokens JWT
-- **Réinitialisation de mot de passe**
-- **Réservation de séances de cinéma**
-- **Affichage des films et des réservations**
-- **Filtrage des films** par genre ou date
-- **Déconnexion**
-  
 ## Prérequis
 
-Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
+Avant de commencer, assurez-vous d'avoir les outils suivants installés :
 
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- [Docker](https://www.docker.com/) (pour la dockerisation)
+- [Docker](https://www.docker.com/) (pour la gestion de conteneurs)
 
-## Installation
+## Installation du projet
 
 1. Clonez le dépôt :
    ```bash
@@ -50,9 +49,9 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
    yarn install
    ```
 
-## Démarrage en mode développement
+## Lancer le projet en mode développement
 
-Pour lancer l'application en mode développement, exécutez la commande suivante :
+Pour démarrer l'application en local, exécutez la commande suivante :
 
 ```bash
 npm start
@@ -62,67 +61,65 @@ ou
 yarn start
 ```
 
-L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
+L'application sera disponible sur [http://localhost:3000](http://localhost:3000).
 
-## Fonctionnalités
+## Fonctionnalités détaillées
 
 ### Inscription et Connexion
-- Formulaire d'inscription avec validation côté frontend.
-- Connexion avec récupération du jeton JWT du backend.
-- Stockage du token JWT dans les cookies ou le localStorage pour une utilisation future.
+
+- Formulaire d'inscription avec validation frontend.
+- Connexion sécurisée avec récupération du jeton JWT depuis le backend.
+- Persistance du token dans `localStorage` pour maintenir la session active.
 
 ### Réinitialisation de mot de passe
-- Formulaire pour entrer l'email et recevoir un lien de réinitialisation.
-- Page dédiée pour réinitialiser le mot de passe via un lien sécurisé.
+
+- Système d'envoi d'email pour réinitialiser le mot de passe.
+- Page dédiée pour créer un nouveau mot de passe via un lien sécurisé.
 
 ### Réservation de séances
-- Liste des films et des séances disponibles.
-- Possibilité de réserver une séance via l'interface utilisateur.
 
-### Gestion des films
-- Affichage des films disponibles avec des filtres pour trier par genre ou date.
-- Consultation des réservations effectuées par l'utilisateur.
+- Liste des films et des séances disponibles.
+- Interface simple pour réserver une séance et choisir les places.
+
+### Gestion des films et utilisateurs (administration)
+
+- Tableau de bord pour l'administration : gestion des films et des réservations.
+- Filtrage par genre, année, et date pour afficher les films selon les préférences.
 
 ## Dockerisation avec Docker Compose
 
-### Étapes de dockerisation :
-
-1. Construisez les images Docker :
+1. Construisez les images Docker du projet :
    ```bash
    docker-compose build
    ```
 
-2. Lancez les conteneurs :
+2. Démarrez les conteneurs :
    ```bash
    docker-compose up
    ```
 
-Une fois les conteneurs démarrés, l'application frontend sera accessible via [http://localhost:3000](http://localhost:3000).
+L'application sera accessible à [http://localhost:3000](http://localhost:3000).
 
-## Bibliothèques et outils utilisés
+## Technologies utilisées
 
-- **React** : Développement de l'interface utilisateur.
-- **React Router** : Gestion des routes et de la navigation.
-- **Axios** : Requêtes HTTP vers le backend.
-- **Formik / React Hook Form** : Gestion des formulaires (optionnel).
-- **Docker & Docker Compose** : Dockerisation du projet pour un déploiement simplifié.
+- **Frontend** : React, React Router pour la navigation, Axios pour les requêtes HTTP.
+- **Backend** : Node.js, Express, MongoDB pour la base de données.
+- **Authentification** : JSON Web Tokens (JWT).
+- **Docker** : Pour déployer l'application dans des conteneurs.
 
 ## Objectifs du projet
 
-1. Compréhension du projet.
-2. Configuration de l'environnement de développement.
-3. Création du projet React.
-4. Développement des pages et composants React.
-5. Communication avec le backend via Axios.
-6. Dockerisation pour le déploiement.
-7. Documentation et rapport final.
+1. Concevoir une solution pour la gestion complète des opérations de cinéma.
+2. Implémenter une architecture scalable et sécurisée.
+3. Utiliser Docker pour faciliter le déploiement.
+4. Documenter l'ensemble du projet via Swagger et un fichier README complet.
 
 ## Contribution
 
-Les contributions sont les bienvenues ! Pour apporter des modifications, veuillez suivre ces étapes :
+Les contributions sont encouragées ! Voici comment vous pouvez participer :
 
-1. Fork le projet
-2. Créez une nouvelle branche (`git checkout -b feature/NouvelleFonctionnalite`)
-3. Commitez vos changements (`git commit -m 'Ajout de nouvelle fonctionnalité'`)
-4. Poussez sur la branche (`git push origin feature/NouvelleFonctionnalite`)
-5. Créez une Pull Request
+1. **Fork** le projet
+2. Créez une branche dédiée à votre fonctionnalité (`git checkout -b feature/NouvelleFonctionnalite`)
+3. Effectuez vos changements et commitez-les (`git commit -m 'Ajout de nouvelle fonctionnalité'`)
+4. Poussez vos changements (`git push origin feature/NouvelleFonctionnalite`)
+5. Soumettez une **Pull Request**
