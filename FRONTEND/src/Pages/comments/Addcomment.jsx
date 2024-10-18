@@ -20,7 +20,7 @@ const AddComment = ({ postId }) => {
       user: user._id,
     };
 
-    dispatch(createComment(newComment)); 
+    dispatch(createComment(newComment));
 
     setText("");
   };
