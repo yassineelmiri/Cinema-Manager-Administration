@@ -6,8 +6,6 @@ import salleReducer from "./slices/salleSlice";
 import seanceReducer from "./slices/seanceSlice";
 import { commentReducer } from "./slices/commentSlice";
 import userReducer from "./slices/userSlice";
-
-
 const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -16,7 +14,7 @@ const store = configureStore({
     salle: salleReducer,
     seance: seanceReducer,
     comment: commentReducer,
-    user:userReducer
+    user: userReducer,
   },
 });
 
