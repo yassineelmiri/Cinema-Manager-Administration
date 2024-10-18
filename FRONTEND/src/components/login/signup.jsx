@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Ajout de useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/main.css";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { registerUser } from "../../redux/apiCalls/authApiCall";
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialisation de useNavigate pour la redirection
+  const navigate = useNavigate();
   const { registerMessage } = useSelector((state) => state.auth);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +30,6 @@ export default function SignIn() {
     dispatch(registerUser({ username, email, password }));
   };
 
-  // Utilisation de useEffect pour surveiller les changements dans registerMessage et rediriger si l'inscription est réussie
   useEffect(() => {
     if (registerMessage) {
       swal({
@@ -38,13 +37,11 @@ export default function SignIn() {
         icon: "success",
       }).then((isOk) => {
         if (isOk) {
-          // Redirection vers la page de connexion
           navigate("/signin"); 
         }
       });
     }
-  }, [registerMessage, navigate]); // Ajout de navigate dans les dépendances
-
+  }, [registerMessage, navigate]);
   return (
     <div
       className="sign section--full-bg"
@@ -64,7 +61,7 @@ export default function SignIn() {
                     className="sign__input"
                     placeholder="Name"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)} // Mise à jour du username
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
                 <div className="sign__group">
@@ -73,7 +70,7 @@ export default function SignIn() {
                     className="sign__input"
                     placeholder="Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)} // Mise à jour de l'email
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="sign__group">
@@ -82,7 +79,7 @@ export default function SignIn() {
                     className="sign__input"
                     placeholder="Password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)} // Mise à jour du password
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
