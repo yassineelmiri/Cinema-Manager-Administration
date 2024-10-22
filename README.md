@@ -113,13 +113,3 @@ L'application sera accessible à [http://localhost:3000](http://localhost:3000).
 2. Implémenter une architecture scalable et sécurisée.
 3. Utiliser Docker pour faciliter le déploiement.
 4. Documenter l'ensemble du projet via Swagger et un fichier README complet.
-
-## Contribution
-
-Les contributions sont encouragées ! Voici comment vous pouvez participer :
-
-1. **Fork** le projet
-2. Créez une branche dédiée à votre fonctionnalité (`git checkout -b feature/NouvelleFonctionnalite`)
-3. Effectuez vos changements et commitez-les (`git commit -m 'Ajout de nouvelle fonctionnalité'`)
-4. Poussez vos changements (`git push origin feature/NouvelleFonctionnalite`)
-5. Soumettez une **Pull Request**
