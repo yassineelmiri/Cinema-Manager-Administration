@@ -9,6 +9,34 @@ import {
 } from "../slices/postSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
+export const toggleLikePost = (postId) => {
+
+  return async (dispatch) => {
+
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!userInfo || !userInfo.token) {
+      toast.error("User is not authenticated");
+      return;
+    }
+
+    try {
+      const { data } = await request.put(`/api/posts/${postId}/like`, {}, {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch(setSelectedPost(data));
+      toast.success("Like updated successfully!");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Error updating like");
+    }
+  };
+};
+
+
 // Fetch Posts Based on Page Number
 export function fetchPost(pageNumber) {
   return async (dispatch) => {
