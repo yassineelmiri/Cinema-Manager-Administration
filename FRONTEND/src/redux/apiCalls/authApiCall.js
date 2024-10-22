@@ -26,8 +26,8 @@ export function loginUser(user) {
 //Logout User
 export function logoutUser() {
   return async (dispatch) => {
-    dispatch(authActions.logout());
     toast.success("logout successfully!");
+    dispatch(authActions.logout());
     localStorage.removeItem("userInfo");
   };
 }
