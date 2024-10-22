@@ -19,7 +19,7 @@ const PostItem = ({ imgSrc, rating, title, list, id }) => {
         {rating}
       </span>
       <h3 className="card__title">
-        <a href="details.html">{title}</a>
+        <Link to="#">{title}</Link>
       </h3>
       <ul className="card__list">
         {list.map((item, index) => (
