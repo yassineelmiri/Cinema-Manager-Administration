@@ -65,7 +65,7 @@ const ListFilm = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {posts.map((post) => (
+                    {posts?.map((post) => (
                       <tr key={post._id}>
                         <td>
                           <div className="main__table-text">

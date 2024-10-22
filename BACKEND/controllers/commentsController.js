@@ -9,25 +9,24 @@ const { User } = require("../models/User");
  * @access private (only logged in user)
  --------------------------------------------------*/
 module.exports.createCommentCtrl = asyncHandler(async (req, res) => {
+  const { error } = validateCreateComment(req.body);
 
-  const { error } = validateCreateComment(req.body); 
-  
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
-  
+
   const profile = await User.findById(req.body.user);
 
   if (!profile) {
     return res.status(404).json({ message: "User not found" });
-  }  
+  }
 
   const comment = await Comment.create({
     postId: req.body.postId,
     text: req.body.text,
     user: req.body.user,
     username: profile.username,
-  });  
+  });
   res.status(201).json(comment);
 });
 
@@ -40,4 +39,40 @@ module.exports.createCommentCtrl = asyncHandler(async (req, res) => {
 module.exports.getCommentsCtrl = asyncHandler(async (req, res) => {
   const comments = await Comment.find().populate("user", "username");
   res.status(200).json(comments);
+});
+// Mettre à jour un commentaire
+module.exports.updateCommentCtrl = asyncHandler(async (req, res) => {
+  console.log(req);
+
+  const { id } = req.params;
+  const { text } = req.body;
+
+  const comment = await Comment.findById(id);
+
+  // Vérifiez si le commentaire existe et si l'utilisateur a le droit de le modifier
+  if (!comment) {
+    return res.status(404).json({ message: "Comment not found" });
+  }
+
+  if (comment.user.toString() !== req.body.user) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
+
+  comment.text = text;
+  await comment.save();
+
+  res.status(200).json(comment);
+});
+
+// Supprimer un commentaire
+module.exports.deleteCommentCtrl = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  // Récupérer le commentaire à partir de la base de données
+  const comment = await Comment.findByIdAndDelete(id);
+  if (!comment) {
+    return res.status(404).json({ message: "Comment not found" });
+  }
+  res.status(200).json({ message: "Comment deleted successfully" });
+
 });

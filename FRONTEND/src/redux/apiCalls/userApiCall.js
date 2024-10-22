@@ -1,5 +1,4 @@
 import {
-  updateUserRequest,
   updateUserSuccess,
   updateUserFail,
 } from "../slices/userSlice";
@@ -8,8 +7,7 @@ import request from "../../utils/request";
 
 // Update User Profile
 export function updateUserProfile(userId, updatedData) {
-  console.log();
-
+  
   return async (dispatch) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (!userInfo || !userInfo.token) {
@@ -27,6 +25,7 @@ export function updateUserProfile(userId, updatedData) {
           },
         }
       );
+      console.log(data);
 
       dispatch(updateUserSuccess(data));
       toast.success("Profile updated successfully!");
@@ -40,3 +39,34 @@ export function updateUserProfile(userId, updatedData) {
     }
   };
 }
+
+// Upload Profile Photo
+export const uploadProfilePhoto = (userId, formData) => {
+  return async (dispatch) => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!userInfo || !userInfo.token) {
+      toast.error("User is not authenticated");
+      return;
+    }
+
+    try {
+      const { data } = await request.post(
+        `/api/users/profile/profile-photo-upload`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            'Content-Type': 'multipart/form-data', // Important pour envoyer les fichiers
+          },
+        }
+      );
+
+      dispatch(updateUserSuccess(data)); // Met à jour l'utilisateur avec la nouvelle photo
+      toast.success("Profile photo updated successfully!");
+    } catch (error) {
+      dispatch(updateUserFail(error.response?.data?.message || error.message));
+      toast.error("Error uploading profile photo");
+    }
+  };
+};
