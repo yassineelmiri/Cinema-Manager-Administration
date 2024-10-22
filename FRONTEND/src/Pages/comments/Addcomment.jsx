@@ -30,7 +30,7 @@ const AddComment = ({ postId }) => {
       <input
         type="text"
         placeholder="Ajouter un commentaire"
-        className="header__form-input"
+        className="sign__textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
