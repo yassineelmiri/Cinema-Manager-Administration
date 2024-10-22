@@ -212,3 +212,40 @@ module.exports.updatePostImageCtrl = asyncHandler(async (req, res) => {
   // 8.Remove image from the server
   fs.unlinkSync(imagePath);
 });
+/**-----------------------------------------------
+* @desc Create Post Like/:id
+* @route /api/posts/:id/like
+* @method PUT
+* @access private (only owner of the post)
+--------------------------------------------------*/
+
+module.exports.toggleLikePostCtrl = asyncHandler(async (req, res) => {
+  
+  console.log('Post ID:', req.params.id);
+  console.log('User ID:', req.user ? req.user._id : 'No user found');
+
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const isLiked = post.likes.includes(req.user._id);
+
+    if (isLiked) {
+      post.likes = post.likes.filter(
+        (userId) => userId.toString() !== req.user._id.toString()
+      );
+    } else {
+      post.likes.push(req.user._id);
+    }
+
+    await post.save();
+    res.status(200).json(post);
+  } catch (error) {
+    console.error('Error occurred while liking the post:', error); // Ajoutez cette ligne pour plus d'informations
+    res.status(500).json({ message: "An error occurred while liking the post." });
+  }
+});
+
