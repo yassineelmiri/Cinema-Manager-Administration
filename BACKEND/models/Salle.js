@@ -5,5 +5,4 @@ const SalleSchema = new mongoose.Schema({
   capacite: { type: Number, required: true },
   typeSalle: { type: String, required: true },
 });
-
 module.exports = mongoose.model("Salle", SalleSchema);
