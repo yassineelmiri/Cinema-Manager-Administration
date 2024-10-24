@@ -4,7 +4,6 @@ const {
   LoginUserCtrl,
   verifyUserAccountCtrl,
 } = require("../controllers/authController");
-
 // /api/auth/register
 router.post("/register", registerUserCtrl);
 // /api/auth/login
