@@ -129,7 +129,10 @@ module.exports.LoginUserCtrl = asyncHandler(async (req, res) => {
     _id: user._id,
     isAdmin: user.isAdmin,
     profilePhoto: user.profilePhoto,
+    bio: user.bio,
     token,
+    createdAt:user.createdAt,
+    updatedAt:user.updatedAt,
     username: user.username,
   });
 });
