@@ -26,19 +26,15 @@ const CommentSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
-// Comment Model
 const Comment = mongoose.model("Comment", CommentSchema);
-
 function validateCreateComment(obj) {
   const schema = Joi.object({
     postId: Joi.string().required(),
-    text: Joi.string().trim().required(), 
-    user: Joi.string().required()
-  });   
+    text: Joi.string().trim().required(),
+    user: Joi.string().required(),
+  });
   return schema.validate(obj);
 }
-
 // Validate Update Comment
 function validateUpdateComment(obj) {
   const schema = Joi.object({
