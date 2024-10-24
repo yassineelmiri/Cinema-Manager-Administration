@@ -39,7 +39,6 @@ function App() {
           path="/user/:userId/verify/:token"
           element={!user ? <VerifyEmail /> : <Navigate to="/" />}
         />
-
         <Route
           path="/lougout"
           element={!user ? <SignUp /> : <Navigate to="/" />}

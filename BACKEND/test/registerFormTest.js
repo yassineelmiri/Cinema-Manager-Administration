@@ -31,6 +31,7 @@ describe("Test du formulaire login", function () {
     await driver
       .findElement(By.css('.sign__input[type="email"]'))
       .sendKeys("miriyassine123@gmail.com");
+      
     await driver
       .findElement(By.css('.sign__input[type="password"]'))
       .sendKeys("0000");

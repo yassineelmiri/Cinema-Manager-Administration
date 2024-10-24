@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
-
 const PostSchema = new mongoose.Schema(
   {
     title: {

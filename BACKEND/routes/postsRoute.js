@@ -13,23 +13,23 @@ const photoUpload = require("../middlewares/photoUpload");
 const { VerifyToken } = require("../middlewares/verifyToken");
 const validateObjectId = require("../middlewares/validateObjectId");
 
-// /api/posts
+// /posts
 router
   .route("/")
   .post(VerifyToken, photoUpload.single("image"), createPostCtrl)
   .get(getAllPostsCtrl);
 
-// /api/posts/count
+// /posts/count
 router.route("/count").get(getPostCountCtrl);
 
-// /api/posts/:id
+// /posts/:id
 router
   .route("/:id")
   .get(validateObjectId, getSinglePostCtrl)
   .delete(validateObjectId, VerifyToken, deletePostCtrl)
   .put(validateObjectId, VerifyToken, updatePostCtrl);
 
-// /api/posts/update-image/:id
+// /posts/update-image/:id
 router
   .route("/update-image/:id")
   .put(
@@ -39,7 +39,7 @@ router
     updatePostImageCtrl
   );
 
-// /api/posts/:id/like
+// /posts/:id/like
 router.route("/:id/like").put(VerifyToken ,toggleLikePostCtrl);
 
 module.exports = router;

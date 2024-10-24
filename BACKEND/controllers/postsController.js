@@ -24,7 +24,9 @@ module.exports.createPostCtrl = asyncHandler(async (req, res) => {
 
     // Validation supplémentaire : vérifier que tous les champs requis sont présents
     if (!title || !description || !category) {
-      return res.status(400).json({ message: "Tous les champs requis doivent être remplis." });
+      return res
+        .status(400)
+        .json({ message: "Tous les champs requis doivent être remplis." });
     }
 
     // Créer le post et associer l'utilisateur à partir de req.user.id (assurez-vous que le middleware de vérification de token passe l'utilisateur dans req.user)
@@ -45,8 +47,6 @@ module.exports.createPostCtrl = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la création du post." });
   }
 });
-
-
 
 /**-----------------------------------------------
 * @desc Get All Post
@@ -220,10 +220,6 @@ module.exports.updatePostImageCtrl = asyncHandler(async (req, res) => {
 --------------------------------------------------*/
 
 module.exports.toggleLikePostCtrl = asyncHandler(async (req, res) => {
-  
-  console.log('Post ID:', req.params.id);
-  console.log('User ID:', req.user ? req.user._id : 'No user found');
-
   try {
     const post = await Post.findById(req.params.id);
 
@@ -244,8 +240,9 @@ module.exports.toggleLikePostCtrl = asyncHandler(async (req, res) => {
     await post.save();
     res.status(200).json(post);
   } catch (error) {
-    console.error('Error occurred while liking the post:', error); // Ajoutez cette ligne pour plus d'informations
-    res.status(500).json({ message: "An error occurred while liking the post." });
+    console.error("Error occurred while liking the post:", error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while liking the post." });
   }
 });
-

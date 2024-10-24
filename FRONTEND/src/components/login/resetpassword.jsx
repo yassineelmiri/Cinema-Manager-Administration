@@ -24,8 +24,6 @@ const ResetPassword = () => {
     if (newPassword !== confirmPassword) {
       return toast.error("Passwords do not match");
     }
-
-    console.log({ newPassword, confirmPassword });
   };
 
   return (

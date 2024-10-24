@@ -15,8 +15,6 @@ const ForgotPassword = () => {
     if (email.trim() === "") {
       return toast.error("Email is required");
     }
-
-    console.log({ email });
   };
 
   return (
@@ -30,7 +28,7 @@ const ForgotPassword = () => {
             <div className="sign__content">
               <form onSubmit={formSubmitHandler} className="sign__form">
                 <Link to="/" className="sign__logo">
-                  <img src={logo} alt="Logo" /> 
+                  <img src={logo} alt="Logo" />
                 </Link>
                 <div className="sign__group">
                   <input
@@ -38,7 +36,7 @@ const ForgotPassword = () => {
                     className="sign__input"
                     placeholder="Enter your email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)} 
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <button className="sign__btn" type="submit">

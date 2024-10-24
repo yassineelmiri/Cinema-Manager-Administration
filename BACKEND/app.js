@@ -41,8 +41,8 @@ app.use("/api/comments", commentsRoute);
 app.use("/api/seances", seanceRoutes);
 app.use("/api/reservations", reservationRoutes);
 
-// Démarrage du serveur
 const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () =>
   console.log(
     `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`

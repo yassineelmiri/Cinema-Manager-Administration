@@ -1,37 +1,39 @@
-const Salle = require('../models/Salle');
+const Salle = require("../models/Salle");
 
 // Ajouter une salle
 exports.addSalle = async (req, res) => {
-    const { nom, capacite, typeSalle } = req.body;
-    const salle = new Salle({ nom, capacite, typeSalle });
-    await salle.save();
-    res.status(201).json(salle);
+  const { nom, capacite, typeSalle } = req.body;
+  const salle = new Salle({ nom, capacite, typeSalle });
+  await salle.save();
+  res.status(201).json(salle);
 };
 
 // Lister les salles
 exports.getSalles = async (req, res) => {
-    const salles = await Salle.find();
-    res.json(salles);
+  const salles = await Salle.find();
+  res.json(salles);
 };
 
 // Modifier une salle
 exports.updateSalle = async (req, res) => {
-    const { id } = req.params;
-    const updatedSalle = await Salle.findByIdAndUpdate(id, req.body, { new: true });
-    res.json(updatedSalle);
+  const { id } = req.params;
+  const updatedSalle = await Salle.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+  res.json(updatedSalle);
 };
 
 // Supprimer une salle
 exports.deleteSalle = async (req, res) => {
-    const { id } = req.params;
-    await Salle.findByIdAndDelete(id);
-    res.status(204).send();
+  const { id } = req.params;
+  await Salle.findByIdAndDelete(id);
+  res.status(204).send();
 };
 exports.getSalleCount = async (req, res) => {
-    try {
-      const count = await Salle.countDocuments(); // Compte le nombre total de salles
-      res.status(200).json(count);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur lors du comptage des salles" });
-    }
-  };
+  try {
+    const count = await Salle.countDocuments();
+    res.status(200).json(count);
+  } catch (error) {
+    res.status(500).json({ message: "Erreur lors du comptage des salles" });
+  }
+};

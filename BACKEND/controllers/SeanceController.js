@@ -12,7 +12,6 @@ exports.addSeance = async (req, res) => {
 // Lister toutes les séances
 exports.getSeances = async (req, res) => {
   try {
-    // Populate both 'salle' and 'film'
     const seances = await Seance.find()
       .populate('salle') 
       .populate('film');

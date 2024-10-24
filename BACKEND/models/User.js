@@ -54,7 +54,6 @@ UserSchema.methods.generateAuthToken = function () {
     process.env.JWT_SECRET
   );
 };
-
 // User Model
 const User = mongoose.model("User", UserSchema);
 //Validate Register User
@@ -66,7 +65,6 @@ function validateRegiterUser(obj) {
   });
   return schema.validate(obj);
 }
-
 //Validation Login User
 function validateLoginUser(obj) {
   const schema = Joi.object({
@@ -75,7 +73,6 @@ function validateLoginUser(obj) {
   });
   return schema.validate(obj);
 }
-
 //Validation Update User
 function validateUpdateUser(obj) {
   const schema = Joi.object({

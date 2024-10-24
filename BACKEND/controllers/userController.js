@@ -40,13 +40,11 @@ module.exports.getUsersProfileCtrl = asyncHandler(async (req, res) => {
 -------------------------------------------------*/
 module.exports.updateUserProfileCtrl = asyncHandler(async (req, res) => {
   const { error } = validateUpdateUser(req.body);
-
   if (error) {
     return res
       .status(400)
       .json({ success: false, message: error.details[0].message });
   }
-
   if (req.body.password) {
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password, salt);
@@ -114,7 +112,6 @@ module.exports.profilePhotoUploadCtrl = asyncHandler(async (req, res) => {
   await user.save();
 
   res.status(200).json({ message: "Your profile photo was uploaded successfully" });
-
   // Remove the image from the server after uploading to Cloudinary
   fs.unlinkSync(imagePath);
 });
