@@ -10,8 +10,6 @@ exports.makeReservation = async (req, res) => {
       places,
     });
     await reservation.save();
-
-    // Envoi d'un email de confirmation de la réservation
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
