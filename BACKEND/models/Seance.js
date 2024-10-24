@@ -6,5 +6,4 @@ const SeanceSchema = new mongoose.Schema({
   horaire: { type: Date, required: true },
   tarif: { type: Number, required: true },
 });
-
 module.exports = mongoose.model("Seance", SeanceSchema);
